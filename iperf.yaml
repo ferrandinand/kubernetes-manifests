@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iperf-deployment
+  labels:
+    app: iperf
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iperf
+  template:
+    metadata:
+      labels:
+        app: iperf
+    spec:
+      affinity:
+        #        podAntiAffinity:
+        #          requiredDuringSchedulingIgnoredDuringExecution:
+        #          - labelSelector:
+        #              matchExpressions:
+        #              - key: app
+        #                operator: In
+        #                values:
+        #                - iperf
+        #            topologyKey: "kubernetes.io/hostname"
+        #
+      containers:
+      - name: iperf
+        image: networkstatic/iperf3
+        args:
+          - -s
+        ports:
+        - containerPort: 5201

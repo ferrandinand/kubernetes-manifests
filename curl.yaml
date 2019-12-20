@@ -1,0 +1,14 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: giantswarm-networking
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: giantswarm-networking
+    spec:
+      containers:
+      - name: giantswarm-networking
+        image: calvix/dev
